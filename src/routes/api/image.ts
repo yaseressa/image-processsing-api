@@ -32,7 +32,6 @@ const validation = async (prop: ImageProp): Promise<string | null> => {
 };
 // checking if the processed image is present in the disk
 const alreadyOut = async (prop: ImageProp): Promise<boolean> => {
-
   if (prop.name && prop.w && prop.h) {
     const Ipath: string = path.resolve(
       OutPath,

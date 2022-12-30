@@ -5,8 +5,8 @@ import sharp from 'sharp';
 
 interface ImageProp { name?: string; w?: string; h?: string;}
 
-const FullPath: string = path.resolve(__dirname, '../../../images/full');
-const OutPath: string = path.resolve(__dirname, '../../../images/out');
+const FullPath: string = path.resolve(__dirname, '../../../../images/full');
+const OutPath: string = path.resolve(__dirname, '../../../../images/out');
 
 const validation = async (prop: ImageProp): Promise<string | null> => {
     if(!prop.name){
@@ -84,7 +84,7 @@ const pathFinder = async (prop: ImageProp): Promise <string | null > =>{
 }
 const imageRouter: express.Router = express.Router();
 
-imageRouter.get('/', async (req:express.Request, res:express.Response) => {
+imageRouter.get('/', async (req:express.Request, res:express.Response): Promise <void> => {
     const valid = await validation(req.query)
     if(valid){
         res.send(valid)
@@ -107,5 +107,5 @@ imageRouter.get('/', async (req:express.Request, res:express.Response) => {
     }
 
 })
-export default imageRouter;
+export  {imageRouter, imageProcessor};
 

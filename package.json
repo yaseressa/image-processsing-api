@@ -4,10 +4,11 @@
   "description": "",
   "main": "index.js",
   "scripts": {
+    "build":"npx tsc",
     "lint": "eslint 'index.ts'",
     "prettier": "prettier --config .prettierrc '*.js' --write",
-    "test": "npx tsc && npx run jasmine ",
-    "start": "nodemon",
+    "test": "npm run build && npm run jasmine",
+    "start": "nodemon src/index.js",
     "jasmine":"jasmine"
   },
   "author": "Ammar Esse",

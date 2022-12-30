@@ -13,14 +13,14 @@ The server will listen on port 3000:
 http://localhost:3000/IApi/image
 
 Expected query arguments are:
-- _name_: Available filenames are:
+- __name__: Available filenames are:
   > encenadaport
   > fjord
   > icelandwaterfall
   > palmtunnel
   > santamonica
-- _w_: numerical value > 0
-- _height_: numerical value > 0
+- __w__: numerical value > 0
+- __h__: numerical value > 0
 
 ## Examples
 http://localhost:3000/IApi/image

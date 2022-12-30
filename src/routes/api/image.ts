@@ -12,6 +12,9 @@ const validation = async (prop: ImageProp): Promise<string | null> => {
     if(!prop.name){
         return `Please Enter a valid image name.`;
     }
+    if(!prop.h && !prop.w){
+      return null
+    }
     // validating whether width holds an appropriate value
     if(Number(prop.w || '') <= 0  || Number.isNaN(prop.w)){
         return 'please Enter any Numerical Value greater than 1 for the width!!.'
@@ -47,6 +50,7 @@ const alreadyOut = async (prop: ImageProp): Promise <boolean> => {
 
 const imageProcessor = async (prop: ImageProp): Promise <string | null > =>{
   //image processing
+    if(prop.h && prop.w){
     try {
         await fs.access(OutPath);
       } catch {
@@ -62,10 +66,12 @@ const imageProcessor = async (prop: ImageProp): Promise <string | null > =>{
         return 'Image cannot be processed and outputted';
     }
 }
+return null
+}
 const pathFinder = async (prop: ImageProp): Promise <string | null > =>{
     if (prop.name) {
      // Check if a file exists or not
-        const Ipath: string =path.resolve( OutPath, `${prop.name}-${prop.w}x${prop.h}.jpg`)
+        const Ipath: string =(prop.h && prop.w) ? path.resolve( OutPath, `${prop.name}-${prop.w}x${prop.h}.jpg`) : path.resolve(FullPath, `${prop.name}.jpg`)
         try {
           await fs.access(Ipath);
           return Ipath;
